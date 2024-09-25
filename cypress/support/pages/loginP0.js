@@ -1,4 +1,5 @@
 export class LoginPage {
+  
   submitLoginButton() {
     cy.get(".login-button").click();
   }

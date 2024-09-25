@@ -1,4 +1,4 @@
-import { HomePage } from "../support/pages/homepo";
+import { HomePage } from "../support/pages/homePO";
 
 describe("home page", () => {
   const homepage = new HomePage();

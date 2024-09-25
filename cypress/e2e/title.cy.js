@@ -1,4 +1,4 @@
-import { HomePage } from "../support/pages/homepo";
+import { HomePage } from "../support/pages/homePO";
 describe("Title", () => {
   const homepage = new HomePage();
   it("verify title-positive", () => {

@@ -1,11 +1,22 @@
 import { RegisterPage } from "../support/pages/registerpo";
-import { HomePage } from "../support/pages/homepo";
+import { HomePage } from "../support/pages/homePO";
+
 describe("register", () => {
   const registerpage = new RegisterPage();
   const homepage = new HomePage();
 
   beforeEach(() => {
     homepage.visit();
+  
+  })
+  
+  
+  it('should show a submit register button', () => {
+    
+    registerpage.clickRegisterIcon();
+    cy.get('h1').should('be.visible')
+    registerpage.submitRegisterButton();
+    
   });
 
   it("should show a submit register button", () => {
@@ -18,6 +29,13 @@ describe("register", () => {
     registerpage.clickRegisterIcon();
     cy.get("h1").should("be.visible");
     registerpage.submitRegisterButton();
+    cy.get('.field-validation-error').should('be.visible', 'First name is required')
+    cy.get('.field-validation-error').should('be.visible', 'Last name is required')
+    cy.get('.field-validation-error').should('be.visible', 'Email is required')
+    cy.get('.field-validation-error').should('be.visible', 'Password is required')
+    cy.get('.field-validation-error').should('be.visible', 'Password is required ')
+    
+    
   });
 
   it("Verify by clicking on the register button for blank input. ", () => {
@@ -82,9 +100,7 @@ describe("register", () => {
     cy.get("#Password").type(userInfo.Password);
     cy.get("#ConfirmPassword").type(userInfo.ConfirmPassword);
     registerpage.submitRegisterButton();
-    cy.get(".field-validation-error").should(
-      "contain",
-      "The password and confirmation password do not match."
-    );
+    cy.get('.field-validation-error').should('contain','The password and confirmation password do not match.')
+    
   });
 });
