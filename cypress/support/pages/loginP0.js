@@ -1,6 +1,6 @@
 export class LoginPage {
 
-  constructor(){          //constructor name
+  constructor(){         
     this.loginIcon = '.ico-login';
     this.emailField = '#Email';
     this.passwordField = '#Password'

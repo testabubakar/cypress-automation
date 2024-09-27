@@ -3,7 +3,7 @@ describe("Title", () => {
   const homepage = new HomePage();
   it("verify title-positive", () => {
     homepage.visit();
-    cy.title().should("eq", "Demo Web Shop. Apparel & Shoes");
+    cy.title().should("eq", "Tricentis Demo Web Shop");
   });
 
   it("verify title-Nagive", () => {

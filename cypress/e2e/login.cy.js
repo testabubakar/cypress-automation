@@ -15,12 +15,11 @@ describe('login functionality', () => {
 
   it('verify login with valid email and password', () => {
     loginpage.clickLoginIcon();
-    /*cy.fixture('Login').then( (data) => {            //this code is for login through fixture.
-      cy.get(this.email).type(data.email);
-      cy.get(this.password).type(data.password);*/
-      loginpage.login('abubakarr30sb@gmail.com','123456')
+    cy.fixture('Login').then( (data) => {            //this code is for login through fixture.
+      cy.get('#Email').type(data.email);
+      cy.get('#Password').type(data.password);
       loginpage.verifySuccessfullyLogin().should('be.visible');
-     
+    });
     
   });
 
