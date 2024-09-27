@@ -8,28 +8,25 @@ describe("Add product in Shoping cart", () => {
     homepage.visit();
   });
 
-  it.only("should verify product computer are added into cart", () => {
+  it("should verify product computer are added into cart", () => {
    addtocart.addToCart();
   });
 
   it("should verify product gift cards are added into cart", () => {
     addtocart.mouseOverGiftIcon();
     addtocart.clickOnGiftCards();
-    cy.get("h1").should('be.visible');
     addtocart.clickOnGiftCardItem();
     addtocart.fillGiftCardDetail();
     addtocart.clickAddToCartGift();
-    addtocart.checkshopingCart();
+    addtocart.shopingCart().should('be.visible','1');
   });
 
   it("should verify books are added into cart", () => {
     addtocart.mouseOverBookIcon();
     addtocart.clickOnBooks();
-    cy.get("h1").should("be.visible");
     addtocart.clickOnComputingAndInternet();
-    cy.get("h1").should("be.visible");
     addtocart.enterBookQuantity();
     addtocart.clickAddToCartBook();
-    addtocart.checkshopingCart();
+    addtocart.shopingCart().should('be.visible','1');
   });
 });

@@ -1,6 +1,6 @@
 export class LoginPage {
 
-  constructor(){
+  constructor(){          //constructor name
     this.loginIcon = '.ico-login';
     this.emailField = '#Email';
     this.passwordField = '#Password'
@@ -11,7 +11,6 @@ export class LoginPage {
   }
   enterEmail(email){
     cy.get(this.emailField).type(email);
-    
   }
 
   enterPassword(password){
@@ -27,7 +26,7 @@ export class LoginPage {
   }
 
   verifySuccessfullyLogin(){
-    cy.get(this.accountButton).should('be.visible')
+   return cy.get(this.accountButton)
   }
   verifyFailedLogin(){
     cy.get(this.errorMessage).should('contain.text','Login was unsuccessful. Please correct the errors and try again.')
@@ -41,8 +40,4 @@ export class LoginPage {
 
   }
   
-
-  
-
- 
 }

@@ -11,7 +11,7 @@ describe("register", () => {
   })
   
   
-  it('should show a submit register button', () => {
+  it.only('should show a submit register button', () => {
     registerpage.registrationIcon().click();
     registerpage.submitRegistration().should('be.visible');
     

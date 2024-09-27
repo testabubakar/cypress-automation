@@ -15,7 +15,7 @@ describe('login functionality', () => {
 
   it('verify login with valid email and password', () => {
     loginpage.clickLoginIcon();
-    /*cy.fixture('Login').then( (data) => {
+    /*cy.fixture('Login').then( (data) => {            //this code is for login through fixture.
       cy.get(this.email).type(data.email);
       cy.get(this.password).type(data.password);*/
       loginpage.login('abubakarr30sb@gmail.com','123456')
@@ -28,7 +28,6 @@ describe('login functionality', () => {
     loginpage.clickLoginIcon();
     loginpage.login('abubakar30sb@gmail.com','12345');
     loginpage.verifyFailedLogin();
-    
     
   });
 
