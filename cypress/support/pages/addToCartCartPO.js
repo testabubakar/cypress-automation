@@ -7,8 +7,10 @@ getTabsLabels(tabs){
   return cy.get(`a:contains(${tabs})`)
 }
 clickOnDesktop(){
-  return cy.get('a[href="/desktops"]').eq(0).click({ force: true });
+  return cy.get('a[href="/desktops"]').eq(0).click();
 }
+
+
 
   addToCart() {
     this.getComputersTab().eq(0).trigger("mouseover");

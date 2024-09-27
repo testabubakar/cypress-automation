@@ -9,7 +9,7 @@ describe("Add product in Shoping cart", () => {
   });
 
   it.only("should verify product computer are added into cart", () => {
-   addtocart.addToCart()
+   addtocart.addToCart();
   });
 
   it("should verify product gift cards are added into cart", () => {

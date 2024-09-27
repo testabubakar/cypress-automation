@@ -1,4 +1,4 @@
-import { RegisterPage } from "../support/pages/registerpo";
+import { RegisterPage } from "../support/pages/registerPO";
 import { HomePage } from "../support/pages/homePO";
 
 describe("register", () => {
@@ -12,95 +12,49 @@ describe("register", () => {
   
   
   it('should show a submit register button', () => {
+    registerpage.registrationIcon();
+    registerpage.submitRegistration();
     
-    registerpage.clickRegisterIcon();
-    cy.get('h1').should('be.visible')
-    registerpage.submitRegisterButton();
-    
-  });
-
-  it("should show a submit register button", () => {
-    registerpage.clickRegisterIcon();
-    cy.get("h1").should("be.visible");
-    registerpage.submitRegisterButton();
   });
 
   it("should click on submit register button", () => {
-    registerpage.clickRegisterIcon();
-    cy.get("h1").should("be.visible");
-    registerpage.submitRegisterButton();
-    cy.get('.field-validation-error').should('be.visible', 'First name is required')
-    cy.get('.field-validation-error').should('be.visible', 'Last name is required')
-    cy.get('.field-validation-error').should('be.visible', 'Email is required')
-    cy.get('.field-validation-error').should('be.visible', 'Password is required')
-    cy.get('.field-validation-error').should('be.visible', 'Password is required ')
-    
+    registerpage.registrationIcon();
+    registerpage.submitRegistration();
     
   });
 
   it("Verify by clicking on the register button for blank input. ", () => {
-    registerpage.clickRegisterIcon();
-    cy.get("h1").should("be.visible");
-    cy.get("#FirstName").should("be.empty");
-    cy.get("#LastName").should("be.empty");
-    cy.get("#Email").should("be.empty");
-    cy.get("#Password").should("be.empty");
-    cy.get("#ConfirmPassword").should("be.empty");
-    registerpage.submitRegisterButton();
-    cy.get(".field-validation-error").should(
+    registerpage.registrationIcon();
+    registerpage.submitRegistration();
+    registerpage.verifyFailedRegister().should(
       "be.visible",
       "First name is required"
     );
-    cy.get(".field-validation-error").should(
+    registerpage.verifyFailedRegister().should(
       "be.visible",
       "Last name is required"
     );
-    cy.get(".field-validation-error").should("be.visible", "Email is required");
-    cy.get(".field-validation-error").should(
+    registerpage.verifyFailedRegister().should("be.visible", "Email is required");
+    registerpage.verifyFailedRegister().should(
       "be.visible",
       "Password is required"
     );
-    cy.get(".field-validation-error").should(
+    registerpage.verifyFailedRegister().should(
       "be.visible",
       "Password is required "
     );
   });
 
   it("Verify user should be register ", () => {
-    registerpage.clickRegisterIcon();
-    cy.get("h1").should("be.visible");
-    const userInfo = {
-      Firstname: "Bob",
-      Lastname: "Ross",
-      Email: "abubakar30sb@gmail.com",
-      Password: "123",
-      ConfirmPassword: "123",
-    };
-    cy.get("#FirstName").type(userInfo.Firstname);
-    cy.get("#LastName").type(userInfo.Lastname);
-    cy.get("#Email").type(userInfo.Email);
-    cy.get("#Password").type(userInfo.Password);
-    cy.get("#ConfirmPassword").type(userInfo.ConfirmPassword);
-    registerpage.submitRegisterButton();
+    registerpage.registrationIcon();
+    registerpage.register('ali','raza','aliraza40@gmail.com','12345','12345')
+  
   });
 
   it("should verify password and confirm password are not same ", () => {
-    registerpage.clickRegisterIcon();
-    cy.get("h1").should("be.visible");
-    const userInfo = {
-      Firstname: "Bob",
-      Lastname: "Ross",
-      Email: "abubakar300sb@gmail.com",
-      Password: "123456",
-      ConfirmPassword: "1234567",
-    };
-    cy.get("#FirstName").type(userInfo.Firstname);
-    cy.get("#LastName").type(userInfo.Lastname);
-    cy.get("#Email").type(userInfo.Email);
-    cy.get("#Password").type(userInfo.Password);
-    cy.get("#ConfirmPassword").type(userInfo.ConfirmPassword);
-    registerpage.submitRegisterButton();
-    cy.get('.field-validation-error').should('contain','The password and confirmation password do not match.')
+    registerpage.registrationIcon();
+    registerpage.register('ali','raza','aliraza40@gmail.com','12345','123456')
+    registerpage.verifyFailedRegister().should('contain','The password and confirmation password do not match.')
     
   });
 });

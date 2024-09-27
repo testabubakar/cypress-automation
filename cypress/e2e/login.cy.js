@@ -1,4 +1,4 @@
-import { LoginPage } from "../support/pages/loginpo";
+import { LoginPage } from "../support/pages/loginP0";
 import { HomePage } from "../support/pages/homePO";
 
 describe('login functionality', () => {  
@@ -8,37 +8,28 @@ describe('login functionality', () => {
     homepage.visit();
   });
 
-  it("should show a submit login button", () => {
-    loginpage.clickLoginIcon();
-    loginpage.submitLoginButton();
-  });
-
   it("should click on submit  login button", () => {
     loginpage.clickLoginIcon();
-    loginpage.submitLoginButton();
+    loginpage.submitLogin();
   });
 
-  it.only('verify login with valid email and password', () => {
+  it('verify login with valid email and password', () => {
     loginpage.clickLoginIcon();
-    cy.fixture('Login').then( (data) => {
-      cy.get('#Email').type(data.email);
-      cy.get('#Password').type(data.password);
-      loginpage.submitLoginButton();
-      
-    })
+    /*cy.fixture('Login').then( (data) => {
+      cy.get(this.email).type(data.email);
+      cy.get(this.password).type(data.password);*/
+      loginpage.login('abubakarr30sb@gmail.com','123456')
+      loginpage.verifySuccessfullyLogin().should('be.visible');
+     
+    
   });
 
   it("should display error when login with invalid email and password", () => {
     loginpage.clickLoginIcon();
-    const userInfo = {
-      Email: "abuba4kar30sb@gmail.com",
-      Password: "123455",
-    };
-    cy.get("#Email").type(userInfo.Email);
-    cy.get("#Password").type(userInfo.Password);
-    loginpage.submitLoginButton();
-    cy.get('.validation-summary-errors').should('be.visible', 'Login was unsuccessful. Please correct the errors and try again.')
+    loginpage.login('abubakar30sb@gmail.com','12345');
+    loginpage.verifyFailedLogin();
     
     
   });
+
 });
