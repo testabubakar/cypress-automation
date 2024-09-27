@@ -12,20 +12,20 @@ describe("register", () => {
   
   
   it('should show a submit register button', () => {
-    registerpage.registrationIcon();
-    registerpage.submitRegistration();
+    registerpage.registrationIcon().click();
+    registerpage.submitRegistration().should('be.visible');
     
   });
 
   it("should click on submit register button", () => {
-    registerpage.registrationIcon();
-    registerpage.submitRegistration();
+    registerpage.registrationIcon().click();
+    registerpage.submitRegistration().click();
     
   });
 
   it("Verify by clicking on the register button for blank input. ", () => {
-    registerpage.registrationIcon();
-    registerpage.submitRegistration();
+    registerpage.registrationIcon().click();
+    registerpage.submitRegistration().click();
     registerpage.verifyFailedRegister().should(
       "be.visible",
       "First name is required"
@@ -46,13 +46,13 @@ describe("register", () => {
   });
 
   it("Verify user should be register ", () => {
-    registerpage.registrationIcon();
+    registerpage.registrationIcon().click();
     registerpage.register('ali','raza','aliraza40@gmail.com','12345','12345')
   
   });
 
   it("should verify password and confirm password are not same ", () => {
-    registerpage.registrationIcon();
+    registerpage.registrationIcon().click();
     registerpage.register('ali','raza','aliraza40@gmail.com','12345','123456')
     registerpage.verifyFailedRegister().should('contain','The password and confirmation password do not match.')
     

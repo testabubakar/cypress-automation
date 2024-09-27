@@ -12,7 +12,7 @@ export class RegisterPage {
 
   }
   registrationIcon(){
-      cy.get(this.registerIcon).click();
+    return cy.get(this.registerIcon)
   }
   verifyFailedRegister(){
     return cy.get(this.errorMessage)
@@ -34,7 +34,7 @@ export class RegisterPage {
      cy.get(this.confirmPasswordField).type(confirmPassword)
   }
   submitRegistration(){
-    cy.get(this.submitRegister).click();
+    return cy.get(this.submitRegister)
   }
 
 
